@@ -1,0 +1,34 @@
+<!--
+# Copyright (C) 2014 marigan.net
+#
+# This file is part of elzoido-auth.
+#
+# elzoido-auth is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# elzoido-auth is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with elzoido-auth. If not, see <http://www.gnu.org/licenses/>.
+#
+# Authors: Michal Mocnak <michal@marigan.net>
+-->
+
+<li class="dropdown">
+    <a ng-show="user.isGuest()" href="#" ng-click="signin()">Sign In <span class="fa fa-sign-in"></span></a>
+
+    <a ng-hide="user.isGuest()" href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="fa fa-user"></span>
+        <span class="left-buffer-10">{{user.name}}</span>
+        <span class="caret"></span>
+    </a>
+    <ul ng-hide="user.isGuest()" class="dropdown-menu">
+        <li><a href="{{profile}}"><span class="fa fa-wrench"></span> Profile</a></li>
+        <li><a href="#" ng-click="signout()"><span class="fa fa-sign-out"></span> Sign Out</a></li>
+    </ul>
+</li>

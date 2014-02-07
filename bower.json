@@ -1,0 +1,36 @@
+{
+    "name": "elzoido-auth",
+    "version": "0.1.0",
+    "main": "dist/elzoido-auth.js",
+    "license": "GPL-3.0+",
+    "dependencies": {
+        "angular": ">=1.2.10",
+        "lodash": "~2.4.1",
+        "jquery": "~2.1.0"
+    },
+    "ignore": [
+        ".*",
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests",
+        "app",
+        "config.coffee",
+        "package.json"
+    ],
+    "homepage": "http://github.com/marigan/elzoido-auth",
+    "authors": [
+        "Michal Mocnak <michal@marigan.net>"
+    ],
+    "description": "AngularjJS Authentication & Authorization Module",
+    "keywords": [
+        "angular",
+        "angularjs",
+        "directive",
+        "service",
+        "authentication",
+        "authorization"
+    ],
+    "private": true
+}
