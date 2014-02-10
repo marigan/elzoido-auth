@@ -21,25 +21,25 @@ angular.module('elzoido.auth').directive 'elzoidoAuthUser', ->
   restrict: 'A'
   transclude: true
   scope: {}
-  controller: ($scope, $rootScope, elzoidoAuth, elzoidoAuthUser) ->
+  controller: ($scope, $rootScope, elzoidoAuthModule, elzoidoAuthUser) ->
     # default guest user
     $scope.user = elzoidoAuthUser.get()
     # setting properties
-    $scope.profile = elzoidoAuth.config.pathProfile
+    $scope.profile = elzoidoAuthModule.config.pathProfile
     # signin function
     $scope.signin = ->
       # signin
-      elzoidoAuth.config.functionSignin().then ->
+      elzoidoAuthModule.config.functionSignin().then ->
         # fire event
-        $rootScope.$broadcast 'event:elzoido_auth_signin'
+        $rootScope.$broadcast 'event:elzoido-auth-signin'
     # signout function
     $scope.signout = ->
       # signout
-      elzoidoAuth.config.functionSignout().then ->
+      elzoidoAuthModule.config.functionSignout().then ->
         # fire event
-        $rootScope.$broadcast 'event:elzoido_auth_signout'
+        $rootScope.$broadcast 'event:elzoido-auth-signout'
     # listener for the user change
-    $rootScope.$on 'event:elzoido_auth_user', (event) ->
+    $rootScope.$on 'event:elzoido-auth-user', (event) ->
       $scope.user = elzoidoAuthUser.get()
   templateUrl: 'partials/user.html'
   replace: false

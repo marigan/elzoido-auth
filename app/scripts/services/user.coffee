@@ -17,7 +17,7 @@
 #
 # Authors: Michal Mocnak <michal@marigan.net>
 
-angular.module('elzoido.auth').factory 'elzoidoAuthUser', ($rootScope, $injector, elzoidoAuth) ->
+angular.module('elzoido.auth').factory 'elzoidoAuthUser', ($rootScope, $injector, elzoidoAuthModule) ->
   # guest user
   guest =
     name: 'Guest'
@@ -36,19 +36,19 @@ angular.module('elzoido.auth').factory 'elzoidoAuthUser', ($rootScope, $injector
   # default user
   currentUser = changeUser(guest)
   # listening for the signin event
-  $rootScope.$on 'event:elzoido_auth_signin', (event) ->
+  $rootScope.$on 'event:elzoido-auth-signin', (event) ->
     # trying to signin and getting personal data
-    $injector.get(elzoidoAuth.config.userProvider).profile (data) ->
+    $injector.get(elzoidoAuthModule.config.userProvider).profile (data) ->
       # set current user
       currentUser = changeUser(data.user)
       # fire event
-      $rootScope.$broadcast 'event:elzoido_auth_user'
+      $rootScope.$broadcast 'event:elzoido-auth-user'
   # listening for the signout
-  $rootScope.$on 'event:elzoido_auth_signout', (event) ->
+  $rootScope.$on 'event:elzoido-auth-signout', (event) ->
     # set current user
     currentUser = guest
   # check for autosignin
-  $rootScope.$broadcast 'event:elzoido_auth_signin' if elzoidoAuth.config.autoSignin
+  $rootScope.$broadcast 'event:elzoido-auth-signin' if elzoidoAuthModule.config.autoSignin
   # return user
   get: ->
     currentUser

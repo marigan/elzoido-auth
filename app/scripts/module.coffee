@@ -17,7 +17,7 @@
 #
 # Authors: Michal Mocnak <michal@marigan.net>
 
-angular.module('elzoido.auth', []).constant 'elzoidoAuth',
+angular.module('elzoido.auth', []).constant 'elzoidoAuthModule',
   install: ($httpProvider) ->
     # register auth interceptor to handle requests
     $httpProvider.responseInterceptors.push ['$q', '$rootScope', ($q, $rootScope) ->
@@ -28,17 +28,17 @@ angular.module('elzoido.auth', []).constant 'elzoidoAuth',
         # handle response
         if response.status is 401
           # fire unauthenticated event
-          $rootScope.$broadcast "event:elzoido_auth_unauthenticated", response.status
+          $rootScope.$broadcast "event:elzoido-auth-unauthenticated", response.status
           # reject respone
           $q.reject response
         else if response.status is 403
           # fire unauthorized event
-          $rootScope.$broadcast "event:elzoido_auth_unauthorized", response.status
+          $rootScope.$broadcast "event:elzoido-auth-unauthorized", response.status
           # reject respone
           $q.reject response
         else
           # fire unauthorized event
-          $rootScope.$broadcast "event:elzoido_auth_error", response.status
+          $rootScope.$broadcast "event:elzoido-auth-error", response.status
           # reject respone
           $q.reject response
       (promise) ->

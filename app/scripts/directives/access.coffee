@@ -30,6 +30,6 @@ angular.module('elzoido.auth').directive 'elzoidoAuthAccess', ($animate, elzoido
       animate(attr.elzoidoAuthAccess) unless _.isUndefined(attr.elzoidoAuthAccess)
 
     # when user is logged in refresh directive
-    scope.$on 'event:elzoido_auth_user', ->
+    scope.$on 'event:elzoido-auth-user', ->
       # animate
       animate(attr.elzoidoAuthAccess) unless _.isUndefined(attr.elzoidoAuthAccess)
