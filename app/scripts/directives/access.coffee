@@ -22,7 +22,7 @@ angular.module('elzoido.auth').directive 'elzoidoAuthAccess', ($animate, elzoido
   link: (scope, element, attr) ->
     # helper method
     animate = (value) ->
-      $animate[if elzoidoAuthUser.get().hasRoles(value) then 'removeClass' else 'addClass'](element, 'ng-hide')
+      $animate[if elzoidoAuthUser.get().hasRoles(value) or _.isEmpty(value) then 'removeClass' else 'addClass'](element, 'ng-hide')
 
     # check for our directive and its value
     scope.$watch attr.elzoidoAuthAccess, ->
