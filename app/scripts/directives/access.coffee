@@ -19,17 +19,17 @@
 
 angular.module('elzoido.auth').directive 'elzoidoAuthAccess', ($animate, elzoidoAuthUser) ->
   restrict: 'A'
+  scope:
+    roles: '@elzoidoAuthAccess'
   link: (scope, element, attr) ->
     # helper method
-    animate = (value) ->
-      $animate[if elzoidoAuthUser.get().hasRoles(value) or _.isEmpty(value) then 'removeClass' else 'addClass'](element, 'ng-hide')
+    animate = ->
+      $animate[if elzoidoAuthUser.get().hasRoles(scope.roles) or _.isEmpty(scope.roles) then 'removeClass' else 'addClass'](element, 'ng-hide') unless _.isUndefined(scope.roles)
 
-    # check for our directive and its value
-    scope.$watch attr.elzoidoAuthAccess, ->
-      # animate
-      animate(attr.elzoidoAuthAccess) unless _.isUndefined(attr.elzoidoAuthAccess)
+    # initial animate
+    animate()
 
     # when user is logged in refresh directive
     scope.$on 'event:elzoido-auth-user', ->
       # animate
-      animate(attr.elzoidoAuthAccess) unless _.isUndefined(attr.elzoidoAuthAccess)
+      animate()
