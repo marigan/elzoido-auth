@@ -35,4 +35,4 @@ exports.config =
         'elzoido-auth.js' : /^(app)/
   plugins:
     angularTemplate:
-      moduleName: 'elzoido.navigation'
+      moduleName: 'elzoido.auth'
