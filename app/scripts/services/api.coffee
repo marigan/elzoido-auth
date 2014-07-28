@@ -17,25 +17,14 @@
 #
 # Authors: Michal Mocnak <michal@marigan.net>
 
-angular.module('elzoido.auth').directive 'elzoidoAuthUser', ->
-  restrict: 'A'
-  transclude: true
-  scope: {}
-  controller: ($scope, $rootScope, elzoidoAuthModule, elzoidoAuthUser, elzoidoAuthAPI) ->
-    # default guest user
-    $scope.user = elzoidoAuthUser.get()
-    # setting properties
-    $scope.profile = elzoidoAuthModule.config.pathProfile
-    # signin function
-    $scope.signin = ->
-      # signin
-      elzoidoAuthAPI.signin()
-    # signout function
-    $scope.signout = ->
-      # signout
-      elzoidoAuthAPI.signout()
-    # listener for the user change
-    $rootScope.$on 'event:elzoido-auth-user', (event) ->
-      $scope.user = elzoidoAuthUser.get()
-  templateUrl: 'partials/user.html'
-  replace: false
+angular.module('elzoido.auth').factory 'elzoidoAuthAPI', ($rootScope, $injector, elzoidoAuthModule) ->
+  # signin API function
+  signin: ->
+    elzoidoAuthModule.config.functionSignin().then ->
+      # fire event
+      $rootScope.$broadcast 'event:elzoido-auth-signin'
+  # signout API function
+  signout: ->
+    elzoidoAuthModule.config.functionSignout().then ->
+      # fire event
+      $rootScope.$broadcast 'event:elzoido-auth-signout'
