@@ -47,8 +47,6 @@ angular.module('elzoido.auth').factory 'elzoidoAuthUser', ($rootScope, $injector
   $rootScope.$on 'event:elzoido-auth-signout', (event) ->
     # set current user
     currentUser = guest
-  # check for autosignin
-  $rootScope.$broadcast 'event:elzoido-auth-signin' if elzoidoAuthModule.config.autoSignin
   # return user
   get: ->
     currentUser

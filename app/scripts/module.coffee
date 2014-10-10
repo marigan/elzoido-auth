@@ -50,4 +50,3 @@ angular.module('elzoido.auth', []).constant 'elzoidoAuthModule',
     pathProfile: null
     functionSignin: null
     functionSignout: null
-    autoSignin: false
