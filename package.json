@@ -2,7 +2,7 @@
   "name": "elzoido-auth",
   "description": "AngularjJS Authentication & Authorization Module",
   "author": "Michal Mocnak",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "repository": "",
   "dependencies": {
     "javascript-brunch": "~1.6.0",

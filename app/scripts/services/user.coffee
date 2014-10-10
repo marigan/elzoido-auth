@@ -35,18 +35,15 @@ angular.module('elzoido.auth').factory 'elzoidoAuthUser', ($rootScope, $injector
         currentUserHasRoles(roles))
   # default user
   currentUser = changeUser(guest)
-  # listening for the signin event
-  $rootScope.$on 'event:elzoido-auth-signin', (event) ->
-    # trying to signin and getting personal data
+  # return user
+  get: ->
+    currentUser
+  signin: ->
     $injector.get(elzoidoAuthModule.config.userProvider).profile (data) ->
       # set current user
       currentUser = changeUser(data.user)
       # fire event
       $rootScope.$broadcast 'event:elzoido-auth-user'
-  # listening for the signout
-  $rootScope.$on 'event:elzoido-auth-signout', (event) ->
+  signout: ->
     # set current user
     currentUser = guest
-  # return user
-  get: ->
-    currentUser
