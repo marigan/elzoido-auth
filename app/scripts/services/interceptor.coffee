@@ -17,10 +17,21 @@
 #
 # Authors: Michal Mocnak <michal@marigan.net>
 
-angular.module('elzoido.auth', []).constant 'elzoidoAuthModule',
-  # all those need to be implemented in the application
-  config:
-    userProvider: null
-    pathProfile: null
-    functionSignin: null
-    functionSignout: null
+angular.module('elzoido.auth').factory 'elzoidoAuthInterceptor', ($q, $rootScope) ->
+  responseError: (rejection) ->
+    # handle response
+    if rejection.status is 401
+      # fire unauthenticated event
+      $rootScope.$broadcast "event:elzoido-auth-unauthenticated", rejection.status
+      # reject respone
+      $q.reject rejection
+    else if rejection.status is 403
+      # fire unauthorized event
+      $rootScope.$broadcast "event:elzoido-auth-unauthorized", rejection.status
+      # reject respone
+      $q.reject rejection
+    else
+      # fire unauthorized event
+      $rootScope.$broadcast "event:elzoido-auth-error", rejection.status
+      # reject respone
+      $q.reject rejection

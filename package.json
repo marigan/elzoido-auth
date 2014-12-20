@@ -2,12 +2,12 @@
   "name": "elzoido-auth",
   "description": "AngularjJS Authentication & Authorization Module",
   "author": "Michal Mocnak",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "repository": "",
   "dependencies": {
-    "javascript-brunch": "~1.6.0",
-    "ng-annotate-uglify-js-brunch": "^1.7.4",
-    "coffee-script-brunch": "~1.7.2",
+    "javascript-brunch": "~1.7.1",
+    "ng-annotate-uglify-js-brunch": "~1.7.4",
+    "coffee-script-brunch": "~1.8.1",
     "aang-template-brunch" : "~1.7.6"
   }
 }
