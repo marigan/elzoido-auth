@@ -21,6 +21,6 @@ angular.module('elzoido.auth', []).constant 'elzoidoAuthModule',
   # all those need to be implemented in the application
   config:
     userProvider: null
-    pathProfile: null
+    functionProfile: null
     functionSignin: null
     functionSignout: null

@@ -24,8 +24,6 @@ angular.module('elzoido.auth').directive 'elzoidoAuthUser', ->
   controller: ($scope, $rootScope, elzoidoAuthModule, elzoidoAuthUser, elzoidoAuthAPI) ->
     # default guest user
     $scope.user = elzoidoAuthUser.get()
-    # setting properties
-    $scope.profile = elzoidoAuthModule.config.pathProfile
     # signin function
     $scope.signin = ->
       # signin
@@ -34,6 +32,9 @@ angular.module('elzoido.auth').directive 'elzoidoAuthUser', ->
     $scope.signout = ->
       # signout
       elzoidoAuthAPI.signout()
+    $scope.profile = ->
+      # signout
+      elzoidoAuthModule.config.functionSignout()
     # listener for the user change
     $rootScope.$on 'event:elzoido-auth-user', (event) ->
       $scope.user = elzoidoAuthUser.get()
