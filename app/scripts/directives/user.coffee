@@ -33,8 +33,8 @@ angular.module('elzoido.auth').directive 'elzoidoAuthUser', ->
       # signout
       elzoidoAuthAPI.signout()
     $scope.profile = ->
-      # signout
-      elzoidoAuthModule.config.functionSignout()
+      # call profile function
+      elzoidoAuthModule.config.functionProfile()
     # listener for the user change
     $rootScope.$on 'event:elzoido-auth-user', (event) ->
       $scope.user = elzoidoAuthUser.get()
