@@ -21,13 +21,16 @@ angular.module('elzoido.auth').directive 'elzoidoAuthUser', ->
   restrict: 'A'
   transclude: true
   scope: {}
-  controller: ($scope, $rootScope, elzoidoAuthModule, elzoidoAuthUser, elzoidoAuthAPI) ->
+  controller: ($scope, $rootScope, $injector, elzoidoAuthModule, elzoidoAuthUser, elzoidoAuthAPI) ->
     # default guest user
     $scope.user = elzoidoAuthUser.get()
+    # active user providers
+    $injector.get(elzoidoAuthModule.config.providersProvider).providers (data) ->
+      $scope.providers = data.providers
     # signin function
-    $scope.signin = ->
+    $scope.signin = (provider) ->
       # signin
-      elzoidoAuthAPI.signin()
+      elzoidoAuthAPI.signin(provider)
     # signout function
     $scope.signout = ->
       # signout
@@ -35,6 +38,9 @@ angular.module('elzoido.auth').directive 'elzoidoAuthUser', ->
     $scope.profile = ->
       # call profile function
       elzoidoAuthModule.config.functionProfile()
+    # icon id retriever
+    $scope.icon = (provider) ->
+      if _.isEqual(provider, 'developer') then 'user' else provider
     # listener for the user change
     $rootScope.$on 'event:elzoido-auth-user', (event) ->
       $scope.user = elzoidoAuthUser.get()

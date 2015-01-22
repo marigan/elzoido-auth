@@ -20,7 +20,12 @@
 -->
 
 <li class="dropdown">
-    <a ng-show="user.isGuest()" href="#" ng-click="signin()">Sign In <span class="fa fa-sign-in"></span></a>
+    <a ng-show="user.isGuest()" href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <span class="fa fa-sign-in"></span></a>
+    <ul ng-show="user.isGuest()" class="dropdown-menu">
+        <li ng-repeat="provider in providers">
+            <a href="#" ng-click="signin(provider)"><span class="fa fa-{{icon(provider)}}"></span> {{provider | elzoidoAuthCapitalize}}</a>
+        </li>
+    </ul>
 
     <a ng-hide="user.isGuest()" href="#" class="dropdown-toggle" data-toggle="dropdown">
         <span class="fa fa-user"></span>

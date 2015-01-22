@@ -17,18 +17,6 @@
 #
 # Authors: Michal Mocnak <michal@marigan.net>
 
-angular.module('elzoido.auth').factory 'elzoidoAuthAPI', ($rootScope, $injector, elzoidoAuthModule, elzoidoAuthUser) ->
-  # signin API function
-  signin: (provider) ->
-    elzoidoAuthModule.config.functionSignin(provider).then ->
-      # fire event
-      $rootScope.$broadcast 'event:elzoido-auth-signin'
-      # update user directive
-      elzoidoAuthUser.signin()
-  # signout API function
-  signout: ->
-    elzoidoAuthModule.config.functionSignout().then ->
-      # fire event
-      $rootScope.$broadcast 'event:elzoido-auth-signout'
-      # update user directive
-      elzoidoAuthUser.signout()
+angular.module('elzoido.auth').filter 'elzoidoAuthCapitalize', ->
+  (text) ->
+    text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()
